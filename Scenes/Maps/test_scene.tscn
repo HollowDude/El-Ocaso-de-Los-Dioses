@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://prq8clge6cd3"]
+
+[ext_resource type="PackedScene" uid="uid://jsxa0ull84qy" path="res://Scenes/Arthur/arthur.tscn" id="1_mu6bv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thi5h"]
+size = Vector2(1166, 45)
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Arthur" parent="." instance=ExtResource("1_mu6bv")]
+position = Vector2(560, 435)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = -16.0
+offset_top = 571.0
+offset_right = 1149.0
+offset_bottom = 611.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(567, 592.5)
+shape = SubResource("RectangleShape2D_thi5h")
