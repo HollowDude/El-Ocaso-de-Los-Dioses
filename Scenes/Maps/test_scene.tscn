@@ -8,7 +8,8 @@ size = Vector2(1166, 45)
 [node name="TestScene" type="Node2D"]
 
 [node name="Arthur" parent="." instance=ExtResource("1_mu6bv")]
-position = Vector2(560, 435)
+position = Vector2(568, 484)
+collision_mask = 30
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_left = -16.0
@@ -17,6 +18,8 @@ offset_right = 1149.0
 offset_bottom = 611.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 28
+collision_mask = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(567, 592.5)
