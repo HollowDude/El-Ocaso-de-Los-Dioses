@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+
 public partial class arthur : CharacterBody2D
 {
     
@@ -11,9 +12,9 @@ public partial class arthur : CharacterBody2D
 	AnimationPlayer anim;
 	AnimatedSprite2D Art;
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
-	
-    public override void _Ready(){
 
+    public override void _Ready(){
+		
 		anim = GetNode("Animations") as AnimationPlayer;
 		Art = GetNode("Sprite") as AnimatedSprite2D;
 
@@ -25,13 +26,15 @@ public partial class arthur : CharacterBody2D
 
 		if (!IsOnFloor()){
 			velocity.Y += gravity * (float)delta;
+			Movi(true);
 			if(!(anim.CurrentAnimation.Equals("Fall"))){
 				anim.Play("Fall");
 			}
-			
+
 		}
 
-		if(velocity == Vector2.Zero && !(anim.CurrentAnimation.Equals("AtackSide")) && !(anim.CurrentAnimation.Equals("AtackUp")) && !(anim.CurrentAnimation.Equals("Crouch")) && !(anim.CurrentAnimation.Equals("Slide")) && !(anim.CurrentAnimation.Equals("Crouch"))){
+		if(velocity == Vector2.Zero && !(anim.CurrentAnimation.Equals("AtackSide")) && !(anim.CurrentAnimation.Equals("AtackUp")) && !(anim.CurrentAnimation.Equals("Crouch")) && !(anim.CurrentAnimation.Equals("Slide")) && !(anim.CurrentAnimation.Equals("Crouch"))){	
+			Movi(false);
 			anim.Play("Idle");
 		}
 
@@ -45,12 +48,16 @@ public partial class arthur : CharacterBody2D
 		direction = Input.GetVector("Izq", "Der", "ui_up", "ui_down");
 
 		if(direction == Vector2.Left){
+			Movi(true);
+			Der(false);
 			Art.FlipH = true;
 			velocity.X = -Speed;
 			anim.Play("Run");
 		}
 
 		if(direction == Vector2.Right){
+			Movi(true);
+			Der(true);
 			Art.FlipH = false;
 			velocity.X = Speed;
 			anim.Play("Run");
@@ -65,12 +72,14 @@ public partial class arthur : CharacterBody2D
 		}
 
 		if(@event.IsActionPressed("Jump") && IsOnFloor()){
+			Movi(true);
 			velocity.Y = JumpVelocity;
 			anim.Play("Jump");
 			Velocity = velocity;
 		}
 
 		if(Input.IsActionPressed("Crouch") && IsOnFloor() && velocity == Vector2.Zero){
+			Movi(false);
 			if(!(anim.CurrentAnimation.Equals("Crouch"))){
 				anim.Play("Crouch");
 			}
@@ -95,5 +104,19 @@ public partial class arthur : CharacterBody2D
 		Velocity = velocity;
 
 		
+	}
+
+	public void Movi(bool esta){
+
+		var ArtGlobs = GetNode<players_glob>("/root/PlayersGlob");
+		ArtGlobs.EnMovArt = esta;
+
+	}
+
+	public void Der(bool esta){
+
+		var ArtGlobs = GetNode<players_glob>("/root/PlayersGlob");
+		ArtGlobs.DerArt = esta;
+
 	}
 }

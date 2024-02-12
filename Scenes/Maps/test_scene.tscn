@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://prq8clge6cd3"]
+[gd_scene load_steps=4 format=3 uid="uid://prq8clge6cd3"]
 
 [ext_resource type="PackedScene" uid="uid://jsxa0ull84qy" path="res://Scenes/Arthur/arthur.tscn" id="1_mu6bv"]
+[ext_resource type="PackedScene" uid="uid://dxuesj1eq31nu" path="res://Scenes/Narfil/narfil.tscn" id="2_cu5wx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_thi5h"]
 size = Vector2(1166, 45)
@@ -8,8 +9,10 @@ size = Vector2(1166, 45)
 [node name="TestScene" type="Node2D"]
 
 [node name="Arthur" parent="." instance=ExtResource("1_mu6bv")]
-position = Vector2(568, 484)
-collision_mask = 30
+position = Vector2(597, 478)
+
+[node name="Narfil" parent="Arthur" instance=ExtResource("2_cu5wx")]
+position = Vector2(22, -13)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_left = -16.0
@@ -19,7 +22,7 @@ offset_bottom = 611.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 28
-collision_mask = 30
+collision_mask = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(567, 592.5)
