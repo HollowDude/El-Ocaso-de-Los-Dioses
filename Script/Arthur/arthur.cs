@@ -10,12 +10,8 @@ public partial class arthur : CharacterBody2D
 	Vector2 direction;
 	AnimationPlayer anim;
 	AnimatedSprite2D Art;
-	
-
-
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
-
-
+	
     public override void _Ready(){
 
 		anim = GetNode("Animations") as AnimationPlayer;
