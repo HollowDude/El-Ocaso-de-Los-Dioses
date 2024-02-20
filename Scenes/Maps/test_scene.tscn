@@ -9,7 +9,7 @@ size = Vector2(1166, 45)
 [node name="TestScene" type="Node2D"]
 
 [node name="Arthur" parent="." instance=ExtResource("1_mu6bv")]
-position = Vector2(597, 478)
+position = Vector2(596, 478)
 
 [node name="Narfil" parent="Arthur" instance=ExtResource("2_cu5wx")]
 position = Vector2(22, -13)
