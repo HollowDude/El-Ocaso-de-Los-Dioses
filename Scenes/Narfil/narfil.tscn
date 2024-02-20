@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxuesj1eq31nu"]
+[gd_scene load_steps=16 format=3 uid="uid://dxuesj1eq31nu"]
 
 [ext_resource type="Texture2D" uid="uid://dmrlr23h5u48s" path="res://Resource/Narfil/crow-fly1.png" id="1_rgq5k"]
 [ext_resource type="Curve2D" uid="uid://dmjyptvr4jq2a" path="res://Scenes/Paths/Following.tres" id="1_sc1oi"]
@@ -11,6 +11,11 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"Back",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Come",
 "speed": 5.0
 }, {
 "frames": [{
@@ -28,10 +33,82 @@ animations = [{
 "loop": true,
 "name": &"FlyingUp",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Gone",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2yfx3"]
 radius = 35.0
+
+[sub_resource type="Animation" id="Animation_kdq0u"]
+resource_name = "Back"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Following/FollowingPath:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Following/FollowingPath/Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Back"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Following/FollowingPath/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_otm2a"]
+resource_name = "Come"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Following/FollowingPath/Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Back"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Following/FollowingPath/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0]
+}
 
 [sub_resource type="Animation" id="Animation_3cn55"]
 length = 4.0
@@ -83,6 +160,35 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"FlyingSide"]
+}
+
+[sub_resource type="Animation" id="Animation_s7s0b"]
+resource_name = "Gone"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Following/FollowingPath/Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Gone"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Following/FollowingPath/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0]
 }
 
 [sub_resource type="Animation" id="Animation_43eck"]
@@ -215,49 +321,12 @@ tracks/4/keys = {
 "values": [&"Back"]
 }
 
-[sub_resource type="Animation" id="Animation_kdq0u"]
-resource_name = "Back"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Following/FollowingPath:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Following/FollowingPath/Sprite:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Back"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Following/FollowingPath/Sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 0, 0, 0, 0, 0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8x2j3"]
 _data = {
 "Back": SubResource("Animation_kdq0u"),
+"Come": SubResource("Animation_otm2a"),
 "Follow": SubResource("Animation_3cn55"),
+"Gone": SubResource("Animation_s7s0b"),
 "Idle1": SubResource("Animation_43eck"),
 "Idle2": SubResource("Animation_gjp7u"),
 "RESET": SubResource("Animation_pr5fw")
